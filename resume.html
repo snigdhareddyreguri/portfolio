@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume | Snigdha Reddy Reguri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #16203a; --muted: #566180; --line: #cfd6e4; --accent: #c8265f; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #e9edf4; color: var(--ink); font: 400 1rem/1.5 "Newsreader", Georgia, serif; }
+    .bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.75rem 1.25rem; font-family: "Bricolage Grotesque", sans-serif; }
+    .bar a, .bar button { font: 600 0.95rem "Bricolage Grotesque", sans-serif; color: var(--ink); text-decoration: none; padding: 0.5rem 1rem; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; cursor: pointer; }
+    .bar .primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .page { max-width: 52rem; margin: 0 auto 2rem; background: #fff; padding: clamp(1.25rem, 4vw, 2.75rem); box-shadow: 0 2px 12px rgba(22, 32, 58, 0.15); }
+    h1 { font: 800 2.1rem/1 "Bricolage Grotesque", sans-serif; margin: 0 0 0.35rem; }
+    h2 { font: 700 1.05rem "Bricolage Grotesque", sans-serif; margin: 1.3rem 0 0.5rem; padding-bottom: 0.2rem; border-bottom: 1.5px solid var(--ink); color: var(--accent); }
+    h3 { font: 700 1rem "Bricolage Grotesque", sans-serif; margin: 0; }
+    p { margin: 0 0 0.3rem; }
+    .contact { color: var(--muted); }
+    .item { margin-bottom: 0.7rem; }
+    .item .top { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .when { color: var(--muted); }
+    ul { margin: 0.2rem 0 0; padding-left: 1.2rem; }
+    @media print {
+      body { background: #fff; } .bar { display: none; }
+      .page { box-shadow: none; margin: 0; padding: 0; max-width: none; }
+      @page { margin: 14mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <a href="index.html">Back to portfolio</a>
+    <span id="pdf-link"></span>
+    <button class="primary" onclick="window.print()">Save as PDF</button>
+  </div>
+  <main class="page" id="resume"></main>
+
+  <script src="js/data.js"></script>
+  <script>
+    (function () {
+      const P = window.PROFILE, L = P.links;
+      const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+      const item = (title, when, body) =>
+        `<div class="item"><div class="top"><h3>${esc(title)}</h3>${when ? `<span class="when">${esc(when)}</span>` : ""}</div>${body || ""}</div>`;
+
+      const contact = [P.location, L.email, L.phone, L.linkedin, L.github].filter(Boolean).map(esc).join(" | ");
+
+      document.getElementById("resume").innerHTML = `
+        <h1>${esc(P.name)}</h1>
+        <p class="contact">${contact}</p>
+
+        <h2>Education</h2>
+        ${P.education.map((e) => item(e.school, e.period, `<p>${esc(e.degree)}. ${esc(e.detail)}</p>`)).join("")}
+
+        <h2>Skills</h2>
+        ${P.skills.map((g) => `<p><b>${esc(g.group)}:</b> ${g.items.map(esc).join(", ")}</p>`).join("")}
+
+        <h2>Projects</h2>
+        ${P.projects
+          .map((p) =>
+            item(
+              p.name,
+              p.team,
+              `<p>${esc(p.summary)}</p><ul><li>${esc(p.role)}</li><li>Tech: ${p.stack.map(esc).join(", ")}</li></ul>`
+            )
+          )
+          .join("")}
+
+        <h2>Leadership</h2>
+        ${P.leadership.map((l) => item(l.title, l.when, `<p>${esc(l.detail)}</p>`)).join("")}
+
+        <h2>Achievements and certifications</h2>
+        <ul>
+          ${P.achievements.map((x) => `<li>${esc(x.title)}${x.detail ? ". " + esc(x.detail) : ""}</li>`).join("")}
+          ${P.certifications.map((c) => `<li>${esc(c.title)}, ${esc(c.issuer)}</li>`).join("")}
+        </ul>
+
+        <h2>Extra-curricular activities</h2>
+        <ul>${P.communities.map((c) => `<li>Member, ${esc(c.name)} (${esc(c.detail)})</li>`).join("")}</ul>`;
+
+      if (P.resume.pdf) document.getElementById("pdf-link").innerHTML = `<a href="${esc(P.resume.pdf)}" download>Download PDF</a>`;
+    })();
+  </script>
+</body>
+</html>

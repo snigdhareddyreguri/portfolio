@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snigdha Reddy Reguri | Portfolio</title>
+  <meta name="description" content="Portfolio of Snigdha Reddy Reguri, B.Tech CSE (AI & ML) student building agentic AI tools and full-stack apps. Includes a chatbot you can ask about her work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#about">Skip to content</a>
+
+  <header class="nav">
+    <a class="brand" href="#top">Snigdha</a>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#achievements">Achievements</a>
+      <a href="resume.html">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Snigdha Reddy Reguri</h1>
+        <p class="lede">Second-year CSE (AI &amp; ML) student building agentic AI tools and full-stack apps.</p>
+        <p class="sub">Hyderabad. Local LLMs, MERN, and a lot of problem solving.</p>
+        <p id="hero-links" class="actions">
+          <a class="btn primary" href="resume.html">View resume</a>
+          <a class="btn" href="#projects">See projects</a>
+        </p>
+      </div>
+
+      <aside class="chat" aria-labelledby="chat-title">
+        <div class="chat-head">
+          <h2 id="chat-title">Ask my portfolio</h2>
+          <p>Answers come only from the details on this site.</p>
+        </div>
+        <div id="chat-log" class="chat-log" role="log" aria-live="polite" aria-label="Conversation"></div>
+        <div id="chat-chips" class="chat-chips" aria-label="Suggested questions"></div>
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <label class="sr" for="chat-input">Ask a question about Snigdha</label>
+          <input id="chat-input" type="text" placeholder="e.g. Does she know Python?" maxlength="200">
+          <button type="submit" class="btn primary">Send</button>
+        </form>
+      </aside>
+    </section>
+
+    <section id="about" class="block">
+      <h2>About</h2>
+      <div id="about-body" class="body prose"></div>
+    </section>
+
+    <section id="projects" class="block">
+      <h2>Projects</h2>
+      <div id="projects-body" class="body"></div>
+    </section>
+
+    <section id="skills" class="block">
+      <h2>Skills</h2>
+      <div id="skills-body" class="body skills"></div>
+    </section>
+
+    <section id="experience" class="block">
+      <h2>Experience</h2>
+      <div id="experience-body" class="body"></div>
+    </section>
+
+    <section id="achievements" class="block">
+      <h2>Achievements</h2>
+      <div id="achievements-body" class="body"></div>
+    </section>
+
+    <section id="education" class="block">
+      <h2>Education</h2>
+      <div id="education-body" class="body"></div>
+    </section>
+
+    <section id="profiles" class="block">
+      <h2>Coding profiles and GitHub</h2>
+      <div id="profiles-body" class="body"></div>
+    </section>
+
+    <section id="contact" class="block">
+      <h2>Contact</h2>
+      <div id="contact-body" class="body"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>&copy; <span id="year"></span> Snigdha Reddy Reguri. Built with plain HTML, CSS and JavaScript.</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
