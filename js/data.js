@@ -140,7 +140,7 @@ const PROFILE = {
     codechef: "https://www.codechef.com/users/snigdha_reguri",
     hackerrank: "",
     email: "snigdhareddy.reguri@gmail.com",
-    phone: "9160392200"
+    phone: ""
   },
 
   // The resume page is generated from this same data; add a PDF too if you like.
